@@ -1,125 +1,99 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import { useAuthStore } from '@/stores/modules/authStore'
-
-const authStore = useAuthStore()
+import { RouterView } from 'vue-router'
 </script>
 
 <template>
   <div class="app-container">
-    <header class="app-header">
-      <div class="header-content">
-        <h1 class="app-title">AI图片处理平台</h1>
-        <nav class="main-nav">
-          <RouterLink to="/">首页</RouterLink>
-          <RouterLink to="/ai-tools">AI工具</RouterLink>
-          <RouterLink to="/settings">设置</RouterLink>
-        </nav>
-        <div class="auth-status">
-          <span v-if="authStore.isAuthenticated" class="authenticated">✅ 已连接</span>
-          <span v-else class="not-authenticated">❌ 未连接</span>
-        </div>
-      </div>
-    </header>
-
-    <main class="app-main">
-      <RouterView />
-    </main>
-
-    <footer class="app-footer">
-      <p>© 2025 AI图片处理平台 - 基于RunningHub ComfyUI技术</p>
-    </footer>
+    <RouterView />
   </div>
 </template>
 
-<style scoped>
-.app-container {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-.app-header {
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #eaeaea;
-  padding: 1rem 2rem;
-}
-
-.header-content {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.app-title {
+<style>
+/* 全局样式重置 */
+* {
   margin: 0;
-  font-size: 1.5rem;
-  color: #333;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.main-nav {
-  display: flex;
-  gap: 2rem;
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.main-nav a {
-  text-decoration: none;
-  color: #666;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
-  transition: all 0.3s ease;
+/* 移动端优化 */
+body {
+  /* 禁止双击缩放 */
+  touch-action: manipulation;
+  /* 禁止长按选择文本 */
+  -webkit-user-select: none;
+  user-select: none;
+  /* 优化移动端点击延迟 */
+  -webkit-tap-highlight-color: transparent;
 }
 
-.main-nav a:hover {
-  color: #409eff;
-  background-color: #ecf5ff;
+/* APP容器全屏 */
+.app-container {
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  /* 移动端滚动优化 */
+  -webkit-overflow-scrolling: touch;
 }
 
-.main-nav a.router-link-exact-active {
-  color: #409eff;
-  background-color: #ecf5ff;
+/* 适配安全区域（针对刘海屏等） - 仅顶部和底部 */
+@supports (padding: max(0px)) {
+  .app-container {
+    padding-top: max(0px, env(safe-area-inset-top));
+    padding-bottom: max(0px, env(safe-area-inset-bottom));
+  }
 }
 
-.auth-status {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+/* 响应式字体大小 */
+@media screen and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
 }
 
-.authenticated {
-  color: #67c23a;
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
 }
 
-.not-authenticated {
-  color: #f56c6c;
+/* 横屏适配 */
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .app-container {
+    height: auto;
+    min-height: 100vh;
+  }
 }
 
-.app-main {
-  flex: 1;
-  padding: 2rem 0;
-}
-
-.app-footer {
-  background-color: #f8f9fa;
-  border-top: 1px solid #eaeaea;
-  padding: 1rem 2rem;
-  text-align: center;
-  color: #666;
-}
-
-@media (max-width: 768px) {
-  .header-content {
-    flex-direction: column;
-    gap: 1rem;
+/* APP端适配 */
+@media screen and (max-width: 768px) {
+  /* 隐藏滚动条但保持滚动功能 */
+  .app-container::-webkit-scrollbar {
+    display: none;
   }
   
-  .main-nav {
-    order: 3;
-    width: 100%;
-    justify-content: center;
+  .app-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* 超大屏幕适配 */
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 18px;
   }
 }
 </style>
