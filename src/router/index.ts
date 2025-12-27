@@ -17,6 +17,37 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import('../views/AboutView.vue'),
     },
+    {
+      path: '/ai-tools',
+      name: 'ai-tools',
+      component: () => import('../views/ai-tools/AIToolsView.vue'),
+      children: [
+        {
+          path: 'background-replace',
+          name: 'background-replace',
+          component: () => import('../views/ai-tools/BackgroundReplaceView.vue'),
+        },
+        {
+          path: 'image-matting',
+          name: 'image-matting',
+          component: () => import('../views/ai-tools/ImageMattingView.vue'),
+        },
+        {
+          path: 'super-resolution',
+          name: 'super-resolution',
+          component: () => import('../views/ai-tools/SuperResolutionView.vue'),
+        },
+        {
+          path: '',
+          redirect: 'background-replace',
+        },
+      ],
+    },
+    {
+      path: '/settings',
+      name: 'settings',
+      component: () => import('../views/ai-tools/SettingsView.vue'),
+    },
   ],
 })
 

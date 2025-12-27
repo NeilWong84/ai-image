@@ -1,36 +1,51 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env.local
+.env.*.local
+!.env.example
+
+# Build outputs
+dist/
+dist-app/
+dist-mobile/
+
 # Logs
-logs
-*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-.DS_Store
-dist
-dist-ssr
-coverage
-*.local
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.sw?
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-*.tsbuildinfo
+# OS generated files
+.DS_Store
+Thumbs.db
 
-.eslintcache
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
 
-# Cypress
-/cypress/videos/
-/cypress/screenshots/
+# Temporary folders
+tmp/
+temp/
 
-# Vitest
-__screenshots__/
+# Output of `npm pack`
+*.tgz
+
+# Vite generated files
+.svelte-kit/
+.output/
+
+# Nuxt build files
+.nuxt/
+.output/
+dist/
+
+# Vue devtools
+__VUE_DEVTOOLS_OPEN__
