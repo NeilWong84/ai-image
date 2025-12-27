@@ -48,6 +48,11 @@ const router = createRouter({
       name: 'settings',
       component: () => import('../views/ai-tools/SettingsView.vue'),
     },
+    {
+      path: '/product-image',
+      name: 'product-image',
+      component: () => import('../views/ai-tools/ProductImageView.vue'),
+    },
   ],
 })
 

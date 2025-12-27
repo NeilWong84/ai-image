@@ -48,8 +48,13 @@ const aiFeatures = [
 
 // 导航到功能页面
 const navigateToFeature = (route: string) => {
-  // 由于部分功能尚未实现，暂时导航到AI工具页面
-  router.push('/ai-tools')
+  // AI产品图跳转到专门页面
+  if (route === '/ai-tools/product-image') {
+    router.push('/product-image')
+  } else {
+    // 其他功能暂时导航到AI工具页面
+    router.push('/ai-tools')
+  }
 }
 
 // 充值功能
