@@ -47,6 +47,13 @@ const aiFeatures = [
     title: 'AI产品详情页',
     description: '智能AI展图片内容',
     route: '/ai-tools/product-detail'
+  },
+  {
+    id: 6,
+    icon: '🔑',
+    title: 'AI Key维护',
+    description: '管理RunningHub和LiblibArt的API密钥',
+    route: '/ai-tools/key-management'
   }
 ]
 
@@ -70,6 +77,9 @@ const navigateToFeature = (route: string) => {
   } else if (route === '/ai-tools/product-detail') {
     // AI产品详情页跳转到开发中页面
     router.push('/product-detail')
+  } else if (route === '/ai-tools/key-management') {
+    // AI Key维护跳转到Key管理页面
+    router.push('/key-management')
   } else {
     // 其他功能暂时导航到AI工具页面
     router.push('/ai-tools')

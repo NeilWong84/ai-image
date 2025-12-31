@@ -73,6 +73,11 @@ const router = createRouter({
       name: 'product-detail',
       component: () => import('../views/ai-tools/ProductDetailView.vue'),
     },
+    {
+      path: '/key-management',
+      name: 'key-management',
+      component: () => import('../views/ai-tools/KeyManagementView.vue'),
+    },
   ],
 })
 
