@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import ImageRecognitionModal from '../components/ImageRecognitionModal.vue'
 
 const router = useRouter()
 
 // 用户积分
 const userPoints = ref(5000)
+
+// 图片识别弹窗显示状态
+const showRecognitionModal = ref(false)
 
 // AI工坊功能列表
 const aiFeatures = [
@@ -48,13 +52,40 @@ const aiFeatures = [
 
 // 导航到功能页面
 const navigateToFeature = (route: string) => {
+  // AI图片识别打开弹窗
+  if (route === '/ai-tools/image-recognition') {
+    showRecognitionModal.value = true
+    return
+  }
+  
   // AI产品图跳转到专门页面
   if (route === '/ai-tools/product-image') {
     router.push('/product-image')
+  } else if (route === '/ai-tools/watermark') {
+    // AI批量水印跳转到加水印页面
+    router.push('/watermark')
+  } else if (route === '/ai-tools/model-image') {
+    // AI模特图跳转到专门页面
+    router.push('/model-image')
+  } else if (route === '/ai-tools/product-detail') {
+    // AI产品详情页跳转到开发中页面
+    router.push('/product-detail')
   } else {
     // 其他功能暂时导航到AI工具页面
     router.push('/ai-tools')
   }
+}
+
+// 关闭图片识别弹窗
+const closeRecognitionModal = () => {
+  showRecognitionModal.value = false
+}
+
+// 处理上传
+const handleUpload = (type: 'camera' | 'album') => {
+  showRecognitionModal.value = false
+  // 跳转到预览页面
+  router.push('/image-recognition-preview')
 }
 
 // 充值功能
@@ -129,6 +160,13 @@ const viewRecords = () => {
         <p class="sub-text">持续更新</p>
       </div>
     </div>
+
+    <!-- 图片识别弹窗 -->
+    <ImageRecognitionModal
+      :visible="showRecognitionModal"
+      @close="closeRecognitionModal"
+      @upload="handleUpload"
+    />
   </div>
 </template>
 

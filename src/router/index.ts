@@ -53,6 +53,26 @@ const router = createRouter({
       name: 'product-image',
       component: () => import('../views/ai-tools/ProductImageView.vue'),
     },
+    {
+      path: '/watermark',
+      name: 'watermark',
+      component: () => import('../views/ai-tools/WatermarkView.vue'),
+    },
+    {
+      path: '/model-image',
+      name: 'model-image',
+      component: () => import('../views/ai-tools/ModelImageView.vue'),
+    },
+    {
+      path: '/image-recognition-preview',
+      name: 'image-recognition-preview',
+      component: () => import('../views/ai-tools/ImageRecognitionPreview.vue'),
+    },
+    {
+      path: '/product-detail',
+      name: 'product-detail',
+      component: () => import('../views/ai-tools/ProductDetailView.vue'),
+    },
   ],
 })
 
